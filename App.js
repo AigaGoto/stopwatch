@@ -5,34 +5,28 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 const App = () => {
 
-  const [num, setNum] = useState(0)
   const [time, setTime] = useState(0)
-  const [isWork, setIsWork] = useState(false)
+  const [intervalId, setIntervalId] = useState()
 
-  let startTime = 0
-  let stockTime = 0
-  let stopTime = 0
-  
   const startWatch = () => {
-    startTime = performance.now()
-    setIsWork(true)
+    const startTime = new Date().getTime()
+    const id = setInterval(() => {
+      setTime(new Date().getTime() - startTime)
+      // console.log(new Date().getTime())
+    }, 10)
+    setIntervalId(id)
   }
   const stopWatch = () => {
-    setIsWork(false)
-    stockTime = time
+    console.log("OK")
+    clearInterval(intervalId)
   }
   const resetWatch = () => {
-    startTime = 0
-    stopTime = 0
     setTime(0)
   }
 
-  useEffect(() => {
-  })
-
   return (
     <View style={styles.container}>
-      <Text>{num}</Text>
+      <Text>{time}</Text>
       <TouchableOpacity style={styles.btn} onPress={() => startWatch()}>
         <Text style={styles.start}>スタート</Text>
       </TouchableOpacity>
