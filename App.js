@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {StartBtn, StopBtn, ResetBtn, Display} from './components'
+import {View} from 'react-native';
+import {Button, Display} from './components'
+import {styles, buttons, btnText} from './assets/styles/style'
 
 const App = () => {
 
@@ -30,33 +31,21 @@ const App = () => {
       <Display time={time} />
       <View style={styles.buttons}>
         {time === 0 && (
-          <StartBtn startWatch={startWatch}/>
+          <Button text={'Start'} btnStyle={buttons.startBtn} btnTextStyle={btnText.start} onPress={startWatch}/>
         )}
         {time > 0 && intervalId && (
-            <StopBtn stopWatch={stopWatch} />
+          <Button text={'Stop'} btnStyle={buttons.stopBtn} btnTextStyle={btnText.stop} onPress={stopWatch} />
             )}
         {time > 0 && !intervalId && (
-            <React.Fragment>
-              <ResetBtn resetWatch={resetWatch}/>
-              <StartBtn startWatch={startWatch}/>
-            </React.Fragment>
+          <React.Fragment>
+            <Button text={'Reset'} btnStyle={buttons.resetBtn} btnTextStyle={btnText.reset} onPress={resetWatch}/>
+            <Button text={'Start'} btnStyle={buttons.startBtn} btnTextStyle={btnText.start} onPress={startWatch}/>
+          </React.Fragment>
         )}
       </View>
       <StatusBar style="auto" />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttons: {
-    position: 'relative',
-  }
-});
 
 export default App

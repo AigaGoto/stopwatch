@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-export function Display(props) {
+export function Display({time}) {
 
     const formatDisplay = (number) => {
         // 一桁の場合は、前に0をつける
@@ -14,13 +14,13 @@ export function Display(props) {
 
     return(
         <View style={displays.displayContainer}>
-            <Text style={displays.timer}>{formatDisplay(Math.floor(props.time / (60 * 1000)))}</Text>
+            <Text style={displays.timer}>{formatDisplay(Math.floor(time / (60 * 1000)))}</Text>
             <Text style={displays.colon}>:</Text>
-            <Text style={displays.timer}>{formatDisplay(Math.floor(props.time / (1000)) % 60)}</Text>
+            <Text style={displays.timer}>{formatDisplay(Math.floor(time / (1000)) % 60)}</Text>
             <Text style={displays.colon}>:</Text>
-            <Text style={displays.timer}>{formatDisplay(Math.floor((props.time % 1000) / 10))}</Text>
+            <Text style={displays.timer}>{formatDisplay(Math.floor((time % 1000) / 10))}</Text>
         </View>
-    )   
+    )
 }
 
 const displays = StyleSheet.create({

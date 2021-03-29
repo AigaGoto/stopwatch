@@ -1,2 +1,2 @@
 export {Display} from './Display'
-export {StartBtn, StopBtn, ResetBtn} from './Buttons'
+export {Button} from './Button'
